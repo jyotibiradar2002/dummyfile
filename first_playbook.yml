@@ -1,0 +1,25 @@
+---
+- name : Install , start & Restart Nginx
+  hosts : all
+  become : true
+  become_user : root
+  tasks :
+    - name : Install Nginx #shell : apt install nginx
+      apt:
+        name : nginx
+        state : present   
+
+    - name : start nginx  # shell : systemctl start nginx
+      service : 
+        name : nginx
+        state : started
+
+    - name : stop  Nginx #shell : systemctl stop nginx
+      service :
+        name : nginx
+        state : stopped
+
+    - name : restart nginx  # shell : systemctl start nginx
+      service :
+        name : nginx
+        state : restarted
